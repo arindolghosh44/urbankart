@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Dashboard</title>
+</head>
+
+<body>
+
+	<section>
+		<div class="container-fluid"
+			style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+			<div class="card shadow-lg p-4 rounded"
+				style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
+				<div class="card-body"
+					style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
+					<div class="container p-5"
+						style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: yellow;">
+						<p class="text-center fs-3 text-primary">Admin Dashboard</p>
+
+						<div class="row p-5">
+
+							<!-- Show for admins EXCEPT arindol.it.aec@gmail.com -->
+							<th:block th:unless="${user.email == 'arindol.it.aec@gmail.com'}">
+								<!-- Add Product -->
+								<div class="col-md-4">
+									<a href="/admin/loadAddProduct" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-solid fa-square-plus fa-2x"></i>
+												<p class="fs-5 fw-bold">Add Product</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<!-- Add Category -->
+								<div class="col-md-4">
+									<a href="/admin/category" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-solid fa-list fa-2x text-warning"></i>
+												<p class="fs-5 fw-bold text-dark">Add Category</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<!-- View Product -->
+								<div class="col-md-4">
+									<a href="/admin/products" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-brands fa-product-hunt text-success fa-2x"></i>
+												<p class="fs-5 fw-bold text-dark">View Product</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<!-- Orders -->
+								<div class="col-md-4">
+									<a href="/admin/orders" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-brands fa-first-order fa-2x text-primary"></i>
+												<p class="fs-5 fw-bold text-dark">Order</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<!-- Users -->
+								<div class="col-md-4">
+									<a href="/admin/users?type=1" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-solid fa-user-secret fa-2x text-danger"></i>
+												<p class="fs-5 fw-bold">User</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</th:block>
+
+							<!-- Show only for arindol.it.aec@gmail.com -->
+							<th:block th:if="${user.email == 'arindol.it.aec@gmail.com'}">
+								<!-- Add Admin -->
+								<div class="col-md-4">
+									<a href="/admin/add-admin" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-solid fa-user-plus fa-2x text-primary"></i>
+												<p class="fs-5 fw-bold">Add Admin</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<!-- Admin List -->
+								<div class="col-md-4">
+									<a href="/admin/users?type=2" class="text-decoration-none">
+										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
+											<div class="card-body text-center">
+												<i class="fa-solid fa-user-shield fa-2x text-primary"></i>
+												<p class="fs-5 fw-bold">Admin</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</th:block>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

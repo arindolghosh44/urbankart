@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Category</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid"
+         style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+
+        <div class="card shadow-lg p-4 rounded"
+             style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
+
+            <div class="card-body"
+                 style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
+
+                <div class="container-fluid p-5">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="card bg-info shadow-lg p-0 m-5 mt-0">
+                                <div class="card-header text-center fs-4"
+                                     style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px; font-weight: bold;">
+                                    Edit Category
+
+                                    <th:block th:if="${session.succMsg}">
+                                        <p class="text-warning fw-bold">[[${session.succMsg}]]</p>
+                                        <th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+                                    </th:block>
+
+                                    <th:block th:if="${session.errorMsg}">
+                                        <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                                        <th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+                                    </th:block>
+                                </div>
+
+                                <div class="card-body"
+                                     style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px;">
+                                    <form action="/admin/updateCategory" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" th:value="${category.id}">
+
+                                        <div class="mb-3">
+                                            <label>Enter Category</label>
+                                            <input type="text" th:value="${category.name}" name="name" class="form-control">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Status</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="isActive"
+                                                       id="activeRadio" value="true"
+                                                       th:checked="${category.isActive == true}">
+                                                <label class="form-check-label" for="activeRadio">Active</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="isActive"
+                                                       id="inactiveRadio" value="false"
+                                                       th:checked="${category.isActive == false}">
+                                                <label class="form-check-label" for="inactiveRadio">Inactive</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 col">
+                                            <label>Upload Image</label>
+                                            <input type="file" name="file" class="form-control" id="imageInput"
+                                                   onchange="previewImage(event)">
+                                        </div>
+
+                                        <div class="text-center mt-2">
+                                            <img id="imagePreview"
+                                                 th:src="@{'/img/Category_image/' + ${category.imageName}}"
+                                                 width="100px" height="100px" style="border-radius: 8px;">
+                                        </div>
+
+                                        <button class="btn btn-primary col-md-12 mt-2">Update</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ✅ Working Image Preview Script -->
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const output = document.getElementById('imagePreview');
+            output.src = reader.result;
+        };
+        const file = event.target.files[0];
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>

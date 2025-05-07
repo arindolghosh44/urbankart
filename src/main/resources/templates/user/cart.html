@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//:www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="container-fluid" style="margin-top: 70px">
+
+
+			<div class="card shadow-sm p-0 m-5 mt-0 bg-body-tertiary rounded">
+
+
+				<div class="card-body" style="background: linear-gradient(135deg, #ff9a9e, #fad0c4);">
+
+
+					<div class="container-fluid mt-5 p-5">
+
+						<div class="card card-sh">
+							<div class="card-header text-center bg-primary">
+								<p class="fs-4">Cart Page</p>
+
+
+								<th:block th:if="${session.succMsg}">
+
+									<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+								</th:block>
+
+								<th:block th:if="${session.errorMsg}">
+
+									<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+									<!-- In case of bean the first later is small -->
+									<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+								</th:block>
+
+
+
+
+
+
+
+							</div>
+							<div class="card-body bg-info text-center">
+								<table
+									class="table table-info table-striped table-bordered border-primary">
+									<thead>
+										<tr>
+										<th>#</th>
+							<th>🖼 Image</th>
+							<th>📌 Product</th>
+							<th>💰 Price</th>
+							<th class="text-center">🔢 Quantity</th>
+							<th>💵 Total</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									<!-- sy=symbole, de=decreased -->
+										<tr th:each="cart,c:${carts}">
+											<th scope="row">[[${c.count}]]</th>
+											<td><img
+												th:src="@{'/img/product_img/'+${cart.product.image}}"
+												width="70px" height="70px"></td>
+											<td>[[${cart.product.title}]]</td>
+											<td>[[${cart.product.discountPrice}]]</td>
+											<td class="text-center"><a
+												th:href="@{'/user/cartQuantityUpdate?sy=de&cid='+${cart.id}}">
+													<i class="fa-solid fa-minus text-danger"></i>
+											</a>  [[${cart.quantity}]]  <a
+												th:href="@{'/user/cartQuantityUpdate?sy=in&cid='+${cart.id}}">
+													<i class="fa-solid fa-plus text-success"></i>
+											</a></td>
+											<td>[[${cart.totalPrice}]]</td>
+										</tr>
+										<tr>
+											<td colspan="4"></td>
+											<td class="fw-bold">Total Price</td>
+											<td class="fw-bold">&#8377; [[${totalOrderPrice}]]</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="text-center">
+								
+									<a href="/user/orders" class="btn btn-warning"> Proceed Payment</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+	</section>
+</body>
+</html>

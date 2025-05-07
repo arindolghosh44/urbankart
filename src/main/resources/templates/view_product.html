@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::Layout(~{::section})}">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>View Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<section>
+
+  <div class="container card-sh" style="margin-top: 70px; margin-bottom: 100px; 
+     background: linear-gradient(135deg, #2E8B57, #A7D129); border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+
+       <div class="container-fluid mb-3 p-4 rounded shadow-lg"
+     style="background: linear-gradient(135deg, #4E9F3D, #A7D129);">
+
+<th:block th:if="${session.succMsg}">
+
+										<p class="text-success alert alert-success text-center fw-bold" role="alert">[[${session.succMsg}]]</p>
+										<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+									</th:block>
+
+									<th:block th:if="${session.errorMsg}">
+
+										<p class="text-danger text-center  alert alert-danger  fw-bold">[[${session.errorMsg}]]</p>
+										<!-- In case of bean the first later of class  is small -->
+										<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+									</th:block>
+
+            <div class="row d-flex align-items-center">  <!-- Ensuring Alignment -->
+
+                <!-- Left Side: Product Image -->
+                <div class="col-md-6 text-center">
+                    <img th:src="@{'/img/product_img/'+${product.image}}" width="100%" height="450px"
+                         style="border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+                </div>
+                
+                
+                
+
+                <!-- Right Side: Product Details -->
+                <div class="col-md-6 p-4">
+                    <div class="card shadow-lg" style="background: linear-gradient(135deg, #FFDEE9, #B5FFFC); border-radius: 15px;">
+
+                        <!-- Card Header -->
+                        <div class="card-header text-center text-white"
+                             style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); font-size: 20px; font-weight: bold;">
+                            Product Details
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="card-body" style="padding: 20px;">
+
+                            <h3 class="text-center" style="color: #333;">[[${product.title}]]</h3>
+                            <p><strong>Description:</strong><br>[[${product.description}]]</p>
+
+                            <p>
+                                <strong>Product Details:</strong> <br>
+                                Status:
+                                <th:block th:if="${product.stock>0}">
+                                    <span class="badge bg-success">Available</span>
+                                </th:block>
+                                <th:block th:unless="${product.stock>0}">
+                                    <span class="badge bg-warning">Out of Stock</span>
+                                </th:block>
+                                <br> Category: [[${product.category}]]<br>
+                                Policy: 12 Days Replacement & Return
+                            </p>
+
+                            <p class="fs-5 fw-bold">
+                                Price: &nbsp;&nbsp;
+                                <i class="fas fa-rupee-sign"></i> [[${product.discountPrice}]]
+                                <span class="fs-6 text-decoration-line-through text-secondary">[[${product.price}]]</span>
+                                <span class="fs-6 text-success">[[${product.discount}]]% off</span>
+                            </p>
+
+                            <!-- Feature Icons -->
+                            <div class="row text-center">
+                                <div class="col-md-4 text-success p-2">
+                                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                                    <p>Cash On Delivery</p>
+                                </div>
+                                <div class="col-md-4 text-danger p-2">
+                                    <i class="fas fa-undo-alt fa-2x"></i>
+                                    <p>Return Available</p>
+                                </div>
+                                <div class="col-md-4 text-primary p-2">
+                                    <i class="fas fa-truck-moving fa-2x"></i>
+                                    <p>Free Shipping</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="card-footer text-center text-white"
+                             style="background: linear-gradient(135deg, #00C9FF, #92FE9D); font-size: 18px; font-weight: bold;">
+
+							
+
+
+
+                            <th:block th:if="${product.stock>0}">
+                            
+                                <th:block th:if="${user==null}">
+                                    <a href="/signin" class="btn btn-danger col-md-12">Add To Cart</a>
+                                </th:block>
+                                <th:block th:unless="${user==null}">
+                                    <a th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}"
+                                       class="btn btn-danger col-md-12">Add To Cart</a>
+                                </th:block>
+                            </th:block>
+
+                            <th:block th:unless="${product.stock>0}">
+                                <a href="#" class="btn text-white btn-danger col-md-12">Out of Stock</a>
+                            </th:block>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

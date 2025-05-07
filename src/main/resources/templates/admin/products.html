@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//:www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="container-fluid"  style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+
+
+		
+			<div class="card shadow-lg p-4 rounded"
+				style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
+
+
+				<div class="card-body"
+					style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
+
+
+					<div class="container-fluid mt-5 p-5">
+
+						<div class="row">
+							<p class="text-center fs-3 mt-2">All Products</p>
+							<hr>
+							<a href="/admin/" class="text-decoration-none"><i
+								class="fa-solid fa-arrow-left"></i> Back</a>
+
+
+							<div class="text-center">
+								<th:block th:if="${session.succMsg}">
+
+									<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+								</th:block>
+								<th:block th:if="${session.succMsg}">
+
+									<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+								</th:block>
+
+								<th:block th:if="${session.errorMsg}">
+
+									<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+									<!-- In case of bean the first later is small -->
+									<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+								</th:block>
+
+
+							</div>
+							<div class="col-md-4 p-3">
+
+								<form action="/admin/products" method="get">
+									<div class="row">
+										<div class="col">
+											<input type="text" class="form-control " name="ch">
+										</div>
+										<div class="col">
+											<button class="btn btn-primary ">
+												<i class="fa-solid fa-magnifying-glass"></i>Search
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+
+
+
+
+
+
+
+
+							<!-- card  -->
+
+							<div class="card shadow-lg  bg-primary">
+								<div class="card-header text-center bg-primary mr-2 ml-2">
+									<!--	<p class="fs-4">View Products</p>
+
+
+									<th:block th:if="${session.succMsg}">
+
+										<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+										<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+									</th:block>
+
+									<th:block th:if="${session.errorMsg}">
+
+										<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+										<!-- In case of bean the first later is small
+										<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+									</th:block>-->
+
+								</div>
+								<div class="card-body bg-info text-center">
+									<table
+										class="table table-info table-striped table-bordered border-primary">
+										<thead>
+											<tr>
+												<th scope="col">Sl No</th>
+												<th scope="col">Image</th>
+												<th scope="col">Title</th>
+												<th scope="col">Category</th>
+												<th scope="col">Price</th>
+												<th scope="col">Discount</th>
+												<th scope="col">Discounted Price</th>
+												<th scope="col">Status</th>
+												<th scope="col">Stock</th>
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="p,c:${products}">
+												<th scope="row">[[${c.count}]]</th>
+												<td><img th:src="@{'/img/product_img/'+${p.image}}"
+													width="70px" height="70px"></td>
+												<td>[[${p.title}]]</td>
+												<td>[[${p.category}]]</td>
+												<td>[[${p.price}]]</td>
+												<td>[[${p.discount}]]</td>
+												<td>[[${p.discountPrice}]]</td>
+												<td>[[${p.isActive}]]</td>
+												<td>[[${p.stock}]]</td>
+												<td><a th:href="@{'/admin/editProduct/'+${p.id}}"
+													class="btn btn-sm btn-primary"><i
+														class="fa-solid fa-pen-to-square"></i>Edit</a> <a
+													th:href="@{'/admin/deleteProduct/'+${p.id}}"
+													class="btn btn-sm btn-danger"><i
+														class="fa-solid fa-trash"></i> Delete</a></td>
+											</tr>
+
+										</tbody>
+									</table>
+
+									<!-- start pagination -->
+									<div class="row">
+										<div class="col-md-4">Total Product :
+											[[${totalElements}]]</div>
+										<div class="col-md-6">
+
+											<nav aria-label="Page navigation example">
+												<ul class="pagination">
+													<li class="page-item"
+														th:classappend="${isFirst} ? 'disabled':''"><a
+														class="page-link"
+														th:href="@{'/admin/products?pageNo='+${pageNo-1}}"
+														aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+													</a></li>
+
+													<li th:each="i:${#numbers.sequence(1,totalPages)}"
+														class="page-item"
+														th:classappend="${pageNo+1==i}?'active':''" ]]><a
+														class="page-link"
+														th:href="@{'/admin/products?pageNo='+${i-1}}">[[${i}]]</a></li>
+
+													<li class="page-item"
+														th:classappend="${isLast} ? 'disabled':''"><a
+														class="page-link"
+														th:href="@{'/admin/products?pageNo='+${pageNo+1}}"
+														aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+													</a></li>
+												</ul>
+											</nav>
+										</div>
+
+									</div>
+
+
+
+
+									<!-- End Pagination -->
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>
