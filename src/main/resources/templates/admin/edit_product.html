@@ -181,21 +181,15 @@
 
 												</div>
 												<div class="mb-3 col">
-
-
-													<label>Upload Image </label> <input type="file" name="file"
-														class="form-control">
-
-
+													<label>Upload Image</label> <input type="file" name="file"
+														class="form-control" id="imageInput"
+														onchange="previewImage(event)">
 												</div>
-
 
 												<div class="mt-1 mb-1 text-center">
 													<img th:src="@{'/img/product_img/'+${product.image}}"
-														width="100px" height="100px">
+														id="imagePreview" width="100px" height="100px">
 												</div>
-
-
 
 
 
@@ -315,6 +309,22 @@
 						.toFixed(2);
 			}
 		</script>
+
+		<script>
+			function previewImage(event) {
+				const input = event.target;
+				const preview = document.getElementById('imagePreview');
+
+				if (input.files && input.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						preview.src = e.target.result;
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+		</script>
+
 
 	</section>
 </body>

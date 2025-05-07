@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::Layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Admin Dashboard</title>
+	<meta charset="ISO-8859-1">
+	<title>Admin Dashboard</title>
 </head>
 
-<body>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: linear-gradient(to right, #4b0082, #ff6f00); min-height: 100vh;">
 
 	<section>
-		<div class="container-fluid"
-			style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
-			<div class="card shadow-lg p-4 rounded"
-				style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
-				<div class="card-body"
-					style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
-					<div class="container p-5"
-						style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: yellow;">
-						<p class="text-center fs-3 text-primary">Admin Dashboard</p>
+		<div class="container-fluid" style="margin-top: 70px; padding: 50px;">
+	<div class="card" style="backdrop-filter: blur(15px); background: linear-gradient(to right, rgba(30, 144, 255, 0.3), rgba(255, 165, 0, 0.3), rgba(255, 105, 180, 0.3)); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); color: #ffffff;">
+
+
+
+
+				<div class="card-body" style="padding: 40px;">
+					<div class="container p-4" style="color: #f0e4d7;">
+						<p class="text-center fs-3" style="font-weight: bold; font-size: 28px;">Admin Dashboard</p>
 
 						<div class="row p-5">
 
-							<!-- Show for admins EXCEPT arindol.it.aec@gmail.com -->
 							<th:block th:unless="${user.email == 'arindol.it.aec@gmail.com'}">
+
 								<!-- Add Product -->
 								<div class="col-md-4">
 									<a href="/admin/loadAddProduct" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-solid fa-square-plus fa-2x"></i>
-												<p class="fs-5 fw-bold">Add Product</p>
+										<div class="card" style="background: rgba(255, 105, 180, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-solid fa-square-plus fa-2x" style="color: #d4af37;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">Add Product</p>
 											</div>
 										</div>
 									</a>
@@ -39,10 +38,10 @@
 								<!-- Add Category -->
 								<div class="col-md-4">
 									<a href="/admin/category" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-solid fa-list fa-2x text-warning"></i>
-												<p class="fs-5 fw-bold text-dark">Add Category</p>
+										<div class="card" style="background: rgba(70, 130, 180, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-solid fa-list fa-2x" style="color: #ff8c42;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">Add Category</p>
 											</div>
 										</div>
 									</a>
@@ -51,10 +50,10 @@
 								<!-- View Product -->
 								<div class="col-md-4">
 									<a href="/admin/products" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-brands fa-product-hunt text-success fa-2x"></i>
-												<p class="fs-5 fw-bold text-dark">View Product</p>
+										<div class="card" style="background: rgba(144, 238, 144, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-brands fa-product-hunt fa-2x" style="color: #cd853f;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">View Product</p>
 											</div>
 										</div>
 									</a>
@@ -63,10 +62,10 @@
 								<!-- Orders -->
 								<div class="col-md-4">
 									<a href="/admin/orders" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-brands fa-first-order fa-2x text-primary"></i>
-												<p class="fs-5 fw-bold text-dark">Order</p>
+										<div class="card" style="background: rgba(255, 99, 71, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-brands fa-first-order fa-2x" style="color: #ff9933;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">Order</p>
 											</div>
 										</div>
 									</a>
@@ -75,25 +74,25 @@
 								<!-- Users -->
 								<div class="col-md-4">
 									<a href="/admin/users?type=1" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-solid fa-user-secret fa-2x text-danger"></i>
-												<p class="fs-5 fw-bold">User</p>
+										<div class="card" style="background: rgba(255, 223, 186, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-solid fa-user-secret fa-2x" style="color: #40e0d0;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">User</p>
 											</div>
 										</div>
 									</a>
 								</div>
 							</th:block>
 
-							<!-- Show only for arindol.it.aec@gmail.com -->
 							<th:block th:if="${user.email == 'arindol.it.aec@gmail.com'}">
+
 								<!-- Add Admin -->
 								<div class="col-md-4">
 									<a href="/admin/add-admin" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-solid fa-user-plus fa-2x text-primary"></i>
-												<p class="fs-5 fw-bold">Add Admin</p>
+										<div class="card" style="background: rgba(255, 140, 0, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-solid fa-user-plus fa-2x" style="color: #f9c74f;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">Add Admin</p>
 											</div>
 										</div>
 									</a>
@@ -102,14 +101,15 @@
 								<!-- Admin List -->
 								<div class="col-md-4">
 									<a href="/admin/users?type=2" class="text-decoration-none">
-										<div class="card bg-info shadow-lg p-0 m-5 mt-0">
-											<div class="card-body text-center">
-												<i class="fa-solid fa-user-shield fa-2x text-primary"></i>
-												<p class="fs-5 fw-bold">Admin</p>
+										<div class="card" style="background: rgba(0, 128, 128, 0.2); backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; margin: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 36px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+											<div class="card-body text-center" style="color: #f0e4d7;">
+												<i class="fa-solid fa-user-shield fa-2x" style="color: #deb887;"></i>
+												<p class="fs-5 fw-bold" style="margin-top: 10px;">Admin</p>
 											</div>
 										</div>
 									</a>
 								</div>
+
 							</th:block>
 
 						</div>

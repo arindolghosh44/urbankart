@@ -1,267 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http//:www.thymeLeaf.org"
-	th:replace="~{base::Layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::Layout(~{::section})}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="ISO-8859-1">
+    <title>Add Product</title>
 </head>
 <body>
-	<section>
-
-
-		<div class="container-fluid"
-			style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
-
-
-
-			<div class="card shadow-lg p-4 rounded"
-				style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
-
-
-				<div class="card-body"
-					style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
-
-
-					<div class="container p-5 ">
-
-						<div class="row">
-
-							<div class="col-md-7 offset-md-2">
-
-								<div class="card bg-info shadow-lg  p-0 m-5 mt-0"
-									style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px; font-size: 18px; font-weight: bold; transition: background 0.3s ease-in-out;">
-
-									<div class="card-header text-center fs-4 ">
-										<p class="text-center fs-4">Add Product</p>
-
-										<th:block th:if="${session.succMsg}">
-
-											<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
-											<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
-										</th:block>
-
-										<th:block th:if="${session.errorMsg}">
-
-											<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
-											<!-- In case of bean the first later is small -->
-											<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
-										</th:block>
-
-
-
-
-
-
-
-									</div>
-									<div class="card-body"
-										style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px; font-size: 18px; font-weight: bold; transition: background 0.3s ease-in-out;">
-
-
-										<form action="/admin/saveProduct" method="post"
-											enctype="multipart/form-data">
-
-
-
-											<div class="mb-3">
-
-
-												<label> Enter title</label> <input type="text" name="title"
-													class="form-control">
-
-
-											</div>
-
-
-											<div class="mb-3">
-
-
-												<label> Enter Description</label>
-												<textarea rows="3" cols="" class="form-control"
-													name="description"></textarea>
-
-
-											</div>
-
-
-											<div class="mb-3">
-
-
-												<label>Category</label> <select class="form-control"
-													name="category">
-
-
-
-													<option th:each="c:${categories}">[[${c.name}]]</option>
-
-
-
-
-
-												</select>
-
-
-											</div>
-
-
-											<div class="mb-3">
-
-
-												<label> Enter Price</label> <input type="text" name="price"
-													class="form-control">
-
-
-											</div>
-
-											<div class="mb-3">
-
-
-												<label> Status</label>
-												<div class="form-check">
-													<input class="form-check-input" type="radio"
-														name="isActive" id="exampleRadios1" value="true" checked>
-													<label class="form-check-label" for="exampleRadios1">Active
-													</label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" type="radio"
-														name="isActive" id="exampleRadios2" value="false">
-													<label class="form-check-label" for="exampleRadios2">
-														Inactive</label>
-												</div>
-
-											</div>
-
-
-
-											<div class="row">
-
-												<div class="mb-3 col">
-
-
-													<label> stock</label> <input type="number" name="stock"
-														class="form-control">
-
-
-												</div>
-												<div class="mb-3 col">
-
-
-													<label>Upload Image </label> <input type="file" name="file"
-														class="form-control">
-
-
-												</div>
-
-
-
-
-
-
-
-
-
-
-
-											</div>
-
-
-
-
-
-
-											<button class="btn btn-primary col-md-12">Submit</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										</form>
-
-
-
-
-
-
-
-
-
-
-									</div>
-
-
-
-
-
-
-
-
-
-
-								</div>
-
-
-
-
-
-
-
-
-							</div>
-
-
-
-
-
-
-
-						</div>
-
-
-
-
-
-
-
-
-
-
-					</div>
-
-
-				</div>
-
-
-			</div>
-
-
-		</div>
-
-
-	</section>
+<section>
+    <div class="container-fluid"
+         style="margin-top: 70px; background: linear-gradient(135deg, #2E8B57, #A7D129); padding: 50px; border-radius: 15px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
+
+        <div class="card shadow-lg p-4 rounded"
+             style="background: linear-gradient(135deg, #FFD700, #2E8B57, #FF4500, #1E90FF); color: white;">
+
+            <div class="card-body"
+                 style="background: linear-gradient(135deg, #2E8B57, #A7D129); color: green;">
+
+                <div class="container p-5">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-2">
+                            <div class="card bg-info shadow-lg p-0 m-5 mt-0"
+                                 style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px; font-size: 18px; font-weight: bold; transition: background 0.3s ease-in-out;">
+
+                                <div class="card-header text-center fs-4">
+                                    <p class="text-center fs-4">Add Product</p>
+
+                                    <th:block th:if="${session.succMsg}">
+                                        <p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+                                        <th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+                                    </th:block>
+
+                                    <th:block th:if="${session.errorMsg}">
+                                        <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                                        <th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
+                                    </th:block>
+                                </div>
+
+                                <div class="card-body"
+                                     style="background: linear-gradient(135deg, #D8F3DC, #A7D129); color: #1E3A34; padding: 20px; border-radius: 10px; font-size: 18px; font-weight: bold; transition: background 0.3s ease-in-out;">
+
+                                    <form action="/admin/saveProduct" method="post" enctype="multipart/form-data">
+
+                                        <div class="mb-3">
+                                            <label>Enter title</label>
+                                            <input type="text" name="title" class="form-control">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Enter Description</label>
+                                            <textarea rows="3" class="form-control" name="description"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Category</label>
+                                            <select class="form-control" name="category">
+                                                <option th:each="c : ${categories}" th:value="${c.name}">[[${c.name}]]</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Enter Price</label>
+                                            <input type="text" name="price" class="form-control">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Status</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="isActive" id="exampleRadios1" value="true" checked>
+                                                <label class="form-check-label" for="exampleRadios1">Active</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="isActive" id="exampleRadios2" value="false">
+                                                <label class="form-check-label" for="exampleRadios2">Inactive</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="mb-3 col">
+                                                <label>Stock</label>
+                                                <input type="number" name="stock" class="form-control">
+                                            </div>
+
+                                            <div class="mb-3 col">
+                                                <label>Upload Image</label>
+                                                <input type="file" name="file" class="form-control" onchange="previewImage(event)">
+                                            </div>
+                                        </div>
+
+                                        <!-- Centered Image Preview -->
+                                        <div class="mb-4 text-center">
+                                            <img id="imagePreview" src="#" alt="Image Preview"
+                                                 class="mx-auto d-block"
+                                                 style="max-width: 100%; max-height: 300px; padding: 10px; display: none; border-radius: 10px;" />
+                                        </div>
+
+                                        <button class="btn btn-primary col-md-12">Submit</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Image Preview -->
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('imagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</section>
 </body>
 </html>

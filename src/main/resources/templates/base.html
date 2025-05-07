@@ -21,162 +21,105 @@
 
 	<!-- Navbar start -->
 
-	<nav class="navbar navbar-expand-lg  bg-info fixed-top text-black">
+	<nav class="navbar navbar-expand-lg bg-info fixed-top text-black"
+		style="background: linear-gradient(to right, #00c6ff, #0072ff); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><i
-				class="fa-solid fa-cart-shopping text-success"></i>UrbanKart</a>
+			<a class="navbar-brand" href="#"
+				style="font-weight: bold; font-size: 24px; color: #ffffff;"><i
+				class="fa-solid fa-cart-shopping text-light"></i> <span
+				style="color: #ffff99;">Urban</span><span style="color: #00ffcc;">Kart</span></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+				aria-label="Toggle navigation" style="border-color: white;">
+				<span class="navbar-toggler-icon" style="filter: invert(1);"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-
-
-
 					<th:block th:if="${user==null}">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/"><i class="fa-solid fa-house"></i>
+							aria-current="page" href="/" style="color: #ffcccb;"><i
+								class="fa-solid fa-house"></i> Home</a></li>
+					</th:block>
+					<th:block th:unless="${user==null}">
+						<li class="nav-item" th:if="${user.role=='ROLE_ADMIN'}"><a
+							class="nav-link active" aria-current="page" href="/admin/"
+							style="color: #98fb98;"><i class="fa-solid fa-house"></i>
+								Home</a></li>
+
+						<li class="nav-item" th:if="${user.role=='ROLE_USER'}"><a
+							class="nav-link active" aria-current="page" href="/"
+							style="color: #ffb6c1;"><i class="fa-solid fa-house"></i>
 								Home</a></li>
 					</th:block>
 
-					<th:block th:unless="${user==null}">
-						<li class="nav-item" th:if="${user.role=='ROLE_ADMIN'}"><a
-							class="nav-link active" aria-current="page" href="/admin/"><i
-								class="fa-solid fa-house"></i> Home</a></li>
-
-						<li class="nav-item" th:if="${user.role=='ROLE_USER'}"><a
-							class="nav-link active" aria-current="page" href="/"><i
-								class="fa-solid fa-house"></i> Home</a></li>
-					</th:block>
-
-
-
-
-
-
-
-
-
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/products"><i
-							class="fa-brands fa-product-hunt text-primary"></i>Product</a></li>
+						aria-current="page" href="/products" style="color: #ffd700;"><i
+							class="fa-brands fa-product-hunt text-warning"></i> Product</a></li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"><i
-							class="fa-solid fa-layer-group text-primary"></i> Category </a>
-						<ul class="dropdown-menu bg-info shadow-lg">
+						data-bs-toggle="dropdown" aria-expanded="false"
+						style="color: #ff69b4;"><i
+							class="fa-solid fa-layer-group text-light"></i> Category </a>
+						<ul class="dropdown-menu bg-info shadow-lg"
+							style="background-color: #e0f7fa;">
 							<li th:each="c:${categorys}"><a class="dropdown-item"
-								th:href="@{'/products?category='+${c.name}}">[[${c.name}]]</a></li>
-
+								th:href="@{'/products?category='+${c.name}}"
+								style="color: #008b8b; font-weight: bold;">[[${c.name}]]</a></li>
 						</ul></li>
-
 				</ul>
 
-
-
-
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
 					<th:block th:if="${user==null}">
-						<li class="nav-item"><a class="nav-link active text-black"
-							aria-current="page" href="/signin"><i
-								class="fa-solid fa-right-to-bracket text-danger"></i>Login</a></li>
-						<li class="nav-item"><a class="nav-link active text-black"
-							aria-current="page" href="/register"><i
-								class="fa-solid fa-address-card text-danger"></i>Register</a></li>
-
+						<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/signin" style="color: #ff6347;"><i
+							class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+<li class="nav-item">
+	<a class="nav-link active"
+		aria-current="page" href="/register"
+		style="color: #e67e22; font-weight: bold; transition: color 0.3s;"
+		onmouseover="this.style.color='#f39c12'"
+		onmouseout="this.style.color='#e67e22'">
+		<i class="fa-solid fa-address-card"></i> Register
+	</a>
+</li>
 
 					</th:block>
-
-
-
 
 					<th:block th:if="${user!=null}">
 						<th:block th:if="${user.role=='ROLE_USER'}">
 							<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="/user/cart"><i
+								aria-current="page" href="/user/cart" style="color: #32cd32;"><i
 									class="fa-solid fa-cart-shopping"></i> Cart [ [[${countCart}]]
 									]</a></li>
 						</th:block>
 
-						<!-- <li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle active" href="#" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> <i
-								class="fa-solid fa-user"></i> [[${user.name}]]
-						</a>
-							<ul class="dropdown-menu">
-								<li th:if="${user.role=='ROLE_USER'}"><a
-									class="dropdown-item" href="/user/profile">Profile</a></li>
-
-								<li th:if="${user.role=='ROLE_ADMIN'}"><a
-									class="dropdown-item" href="/admin/profile">Profile</a></li>
-
-								<li th:if="${user.role=='ROLE_USER'}"><a
-									class="dropdown-item" href="/user/user-orders">My Orders</a></li>
-									<li><a class="dropdown-item" href="/user/feedback">Feedback</a></li>
-								<li><a class="dropdown-item" href="/logout">Logout</a></li>
-								<li><hr class="dropdown-divider"></li>
-
-							</ul></li>-->
-
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle active" href="#" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> <i
-								class="fa-solid fa-user"></i> [[${user.name}]]
-						</a>
-							<ul class="dropdown-menu">
+							data-bs-toggle="dropdown" aria-expanded="false"
+							style="color: #e6e6fa;"><i class="fa-solid fa-user"></i>
+								[[${user.name}]]</a>
+							<ul class="dropdown-menu"
+								style="background-color: #f1f8e9; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">
 								<li><a class="dropdown-item"
-									th:href="${user.role == 'ROLE_USER'} ? '/user/profile' : '/admin/profile'">Profile</a></li>
-
+									th:href="${user.role == 'ROLE_USER'} ? '/user/profile' : '/admin/profile'"
+									style="color: #2e8b57;">Profile</a></li>
 								<li th:if="${user.role == 'ROLE_USER'}"><a
-									class="dropdown-item" href="/user/user-orders">My Orders</a></li>
-
+									class="dropdown-item" href="/user/user-orders"
+									style="color: #3cb371;">My Orders</a></li>
 								<li th:if="${user.role == 'ROLE_USER'}"><a
-									class="dropdown-item" href="/user/feedback">Feedback</a></li>
-
-								<li><a class="dropdown-item" href="/logout">Logout</a></li>
-
+									class="dropdown-item" href="/user/feedback"
+									style="color: #20b2aa;">Feedback</a></li>
+								<li><a class="dropdown-item" href="/logout"
+									style="color: #dc143c;">Logout</a></li>
 								<li><hr class="dropdown-divider"></li>
 							</ul></li>
-
-
-
-
 					</th:block>
-
 				</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</nav>
-
 
 
 
