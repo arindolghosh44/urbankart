@@ -30,6 +30,8 @@ Admins can manage products, orders, users, and reports easily.
 
 Fully developed in-house with flexibility for updates.
 
+![Screenshot (624)](https://github.com/user-attachments/assets/cd730050-9b6f-4f35-aa86-a86369b2af89)
+
 
 ![Screenshot (521)](https://github.com/user-attachments/assets/977b1b96-c27d-4f48-aca2-b67f871c123c)
 ![Screenshot (522)](https://github.com/user-attachments/assets/2c03c336-4209-4ff4-a2df-3cdfff68d8fa)
