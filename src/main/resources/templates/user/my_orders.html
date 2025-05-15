@@ -21,7 +21,7 @@
 							<p class="fs-3">📦 View Your Orders</p>
 
 							<th:block th:if="${session.succMsg}">
-								<p class="text-warning text-striped fw-bold">[[${session.succMsg}]]</p>
+								<p class="text-success text-striped fw-bold">[[${session.succMsg}]]</p>
 								<th:block th:text="${@commonServiceImple.removeSessionMsg()}"></th:block>
 							</th:block>
 
